@@ -1,9 +1,10 @@
 import * as THREE from "three";
-import OrbitControls from "three-orbitcontrols";
+
 import { INITIAL_CAMERA_POSITION } from "./constants";
+import OrbitControls from "three-orbitcontrols";
 
 export const scene = new THREE.Scene();
-export const rootMesh = new THREE.Mesh(new THREE.Geometry());
+export const rootMesh = new THREE.Mesh(new THREE.BufferGeometry());
 
 export function init(container) {
 	const width = container.offsetWidth || window.innerWidth;
@@ -20,20 +21,24 @@ export function init(container) {
 	}
 
 	function play() {
+		// Main values
+		// console.log("Camera Position:", camera.position);
+		// console.log("Camera Target:", controls.target); // Only if using c
+
 		requestAnimationFrame(play);
-		rootMesh.rotation.y += 0.0005;
+		rootMesh.rotation.y += 0.0003;
 		renderer.render(scene, camera);
 		controls.update();
 	}
 
 	function addStarField() {
-		var geometry = new THREE.SphereGeometry(4000, 100, 100);
+		var geometry = new THREE.SphereGeometry(1000, 200, 200);
 		var veryBigSphereForStars = new THREE.Mesh(geometry, undefined);
 
 		veryBigSphereForStars.geometry.vertices
 			.filter((x) => Math.random() > 0.5)
 			.forEach((starCoords) => {
-				const geometry = new THREE.SphereGeometry(7, 3, 3);
+				const geometry = new THREE.SphereGeometry(3, 10, 10);
 				const material = new THREE.MeshBasicMaterial({
 					color: `rgb(255, 255, 255)`,
 					transparent: true,
@@ -62,9 +67,29 @@ export function init(container) {
 
 	renderer.setSize(width, height);
 	container.appendChild(renderer.domElement);
-	rootMesh.rotation.y = 300;
-	camera.position.z = INITIAL_CAMERA_POSITION;
-	camera.position.y = 280;
+	rootMesh.rotation.y = -1250;
+
+	const pos = { x: -227.08149229278905, y: -147.31300848454953, z: 64.79081794006999 };
+
+	camera.position.x = pos.x;
+	camera.position.y = pos.y;
+	camera.position.z = pos.z;
+
+	const tar = {
+		x: 20.031551697356647,
+		y: 1.0364886448903307e-14,
+		z: -234.32148957989017
+	};
+
+	controls.target.x = tar.x;
+	controls.target.y = tar.y;
+	controls.target.z = tar.z;
+
+	// x: 18.523917489650845, y: 9.005533997539278e-15, z: -177.76560086382747
+
+	// 227.08149229278905, y: -147.31300848454953, z: 64.7908179400700
+
+	// {x: -220.5959788020247, y: -147.31300848454953, z: 223.80412620663054}
 
 	// add rootMesh to scene
 	scene.add(rootMesh);
@@ -90,3 +115,9 @@ function initResizeListener(container, camera, renderer) {
 		false
 	);
 }
+
+window.onkeydown = (x) => {
+	if (x.code === "Space") {
+		console.log(x);
+	}
+};
