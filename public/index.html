@@ -2,172 +2,167 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        html,
-        body,
-        div,
-        span,
-        applet,
-        object,
-        iframe,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        blockquote,
-        pre,
-        a,
-        abbr,
-        acronym,
-        address,
-        big,
-        cite,
-        code,
-        del,
-        dfn,
-        em,
-        img,
-        ins,
-        kbd,
-        q,
-        s,
-        samp,
-        small,
-        strike,
-        strong,
-        sub,
-        sup,
-        tt,
-        var,
-        b,
-        u,
-        i,
-        center,
-        dl,
-        dt,
-        dd,
-        ol,
-        ul,
-        li,
-        fieldset,
-        form,
-        label,
-        legend,
-        table,
-        caption,
-        tbody,
-        tfoot,
-        thead,
-        tr,
-        th,
-        td,
-        article,
-        aside,
-        canvas,
-        details,
-        embed,
-        figure,
-        figcaption,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        output,
-        ruby,
-        section,
-        summary,
-        time,
-        mark,
-        audio,
-        video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline
+    }
 
-        article,
-        aside,
-        details,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        section {
-            display: block
-        }
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block
+    }
 
-        body {
-            line-height: 1
-        }
+    body {
+      line-height: 1
+    }
 
-        ol,
-        ul {
-            list-style: none
-        }
+    ol,
+    ul {
+      list-style: none
+    }
 
-        blockquote,
-        q {
-            quotes: none
-        }
+    blockquote,
+    q {
+      quotes: none
+    }
 
-        blockquote:before,
-        blockquote:after,
-        q:before,
-        q:after {
-            content: '';
-            content: none
-        }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: '';
+      content: none
+    }
 
-        table {
-            border-collapse: collapse;
-            border-spacing: 0
-        }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0
+    }
 
-        html,
-        body {
-            overflow: hidden;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-    </style>
-    <title>Cyber attacks watch</title>
-    <style>
-        #controls {
-            position: absolute;
-            padding: 10px;
-            background: rgba(255, 255, 255, 1);
-            z-index: 1;
-            border-radius: 10px;
-            left: 5px;
-            top: 5px;
-        }
-        #controls h3 {
-            margin: 10px 0;
-        }
-    </style>
+    html,
+    body {
+      overflow: hidden;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+  </style>
+  <title>Cyber attacks watch</title>
+  <style>
+    #controls {
+      position: absolute;
+      padding: 10px;
+      background: rgba(255, 255, 255, 1);
+      z-index: 1;
+      border-radius: 10px;
+      left: 5px;
+      top: 5px;
+    }
+
+    #controls h3 {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="controls">
-        <input type="date" class="search-date" value="2019-07-17" />
-        <input type="time" class="search-date-start" value="20:00" placeholder="start">
-        <input type="time" class="search-date-end" value="21:00" placeholder="end">
-        <h3>Total attacks: <span class="totals"></span></h3>
-        <button class="search-button">Search</button>
-    </div>
-    <div id="globe-app" class="globe-app"></div>
+
+  <div id="globe-app" class="globe-app"></div>
 </body>
 
 </html>
