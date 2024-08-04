@@ -24,20 +24,14 @@ export function init(container) {
 	}
 
 	function updatePositions(tick) {
-		// return;
-		// tick = 0;
-
-		if (tick >= 1) tick = 1;
-
-		// console.log(tick);
-
-		const easingFunction = d3.easePolyInOut(tick);
+		const easingFunction = d3.easeSinInOut(tick);
 
 		const camPos = cameraPositionsInterpolation(easingFunction);
 		const camRot = cameraRotationsInterpolation(easingFunction);
 		const controlsTarget = controlsTargetScaleInterpolation(easingFunction);
 
-		// return;
+		// console.log(camPos);
+		// console.log(camRot);
 
 		camera.position.x = camPos.x;
 		camera.position.y = camPos.y;
@@ -47,31 +41,31 @@ export function init(container) {
 		camera.rotation.y = camRot.y;
 		camera.rotation.z = camRot.z;
 
-		// controls.target.x = initialControls.x;
-		// controls.target.y = initialControls.y;
-		// controls.target.z = initialControls.z;
+		if (tick > 0) {
+			controls.target.x = controlsTarget.x;
+			controls.target.y = controlsTarget.y;
+			controls.target.z = controlsTarget.z;
+		}
 	}
 
 	let tick = 0;
-	let animInit = 0;
+	let start = false;
 
 	function play() {
-		// Main values
-		// console.log("Camera Position:", camera.position);
-		// console.log("Camera Target:", controls.target); // Only if using c
-
-		animInit++;
-
-		if (animInit > 1500) {
-			// console.log("xx");
-			tick += 0.0005;
-			updatePositions(tick);
-		}
-
 		requestAnimationFrame(play);
 		rootMesh.rotation.y += 0.00015;
-		renderer.render(scene, camera);
+
+		if (start) {
+			tick += 0.001 / 2;
+
+			if (tick > 1) tick = 1;
+			updatePositions(tick);
+		} else {
+			updatePositions(0);
+		}
+
 		controls.update();
+		renderer.render(scene, camera);
 	}
 
 	function addStarField() {
@@ -123,7 +117,7 @@ export function init(container) {
 	}
 
 	function addLights() {
-		const light = new THREE.HemisphereLight(0xffffff, 0x000000, 1.2);
+		const light = new THREE.HemisphereLight(0xffffff, 0x000000, 4.25);
 		light.castShadow = true;
 		scene.add(light);
 	}
@@ -133,13 +127,14 @@ export function init(container) {
 
 	renderer.setSize(width, height);
 	container.appendChild(renderer.domElement);
-	rootMesh.rotation.y = 200;
+	rootMesh.rotation.y = 850;
 
 	const initialCamera = {
 		x: -19.0027499499094,
 		y: 210.69435797905314,
 		z: -234.91307733382692
 	};
+
 	const initialCameraRot = {
 		x: -1.8428231895281582,
 		y: -0.7005978749993316,
@@ -147,9 +142,9 @@ export function init(container) {
 	};
 
 	const finalCamera = {
-		x: 21.645947327272623,
-		y: -183.3748333519309,
-		z: -314.6536490302484
+		x: 12.645947327272623,
+		y: -100.3748333519309,
+		z: -250.6536490302484
 	};
 
 	const finalCameraRot = {
@@ -165,7 +160,7 @@ export function init(container) {
 	};
 
 	const finalControls = {
-		x: 20.031551697356647,
+		x: 21.031551697356647,
 		y: 1.0364886448903307e-14,
 		z: -234.32148957989017
 	};
@@ -177,15 +172,31 @@ export function init(container) {
 	// add rootMesh to scene
 	scene.add(rootMesh);
 
-	updatePositions(0);
 	addStarField();
 
 	addLights();
 
+	camera.position.x = initialCamera.x;
+	camera.position.y = initialCamera.y;
+	camera.position.z = initialCamera.z;
+
+	camera.rotation.x = initialCameraRot.x;
+	camera.rotation.y = initialCameraRot.y;
+	camera.rotation.z = initialCameraRot.z;
+
+	controls.target.x = initialControls.x;
+	controls.target.y = initialControls.y;
+	controls.target.z = initialControls.z;
+
 	play();
 
 	window.onkeydown = (x) => {
+		if (x.code === "Enter") {
+			start = true;
+		}
 		if (x.code === "Space") {
+			// updatePositions(0);
+
 			console.log({
 				x: camera.position.x,
 				y: camera.position.y,
