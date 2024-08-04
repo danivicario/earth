@@ -10179,15 +10179,10 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
-"three-orbitcontrols@^2.110.3":
-  "integrity" "sha512-BNNbksJwbN3/MmT0X/gjz5ZCchm7bjk26SUdtJYRxfEYjDfkb/0PeUTHE/KuyJ5vb/owK3mojyy3vcqDx99sRA=="
-  "resolved" "https://registry.npmjs.org/three-orbitcontrols/-/three-orbitcontrols-2.110.3.tgz"
-  "version" "2.110.3"
-
-"three@^0.112.1", "three@>= 0.110.0":
-  "integrity" "sha512-8I0O74hiYtKl3LgDNcPJbBGOlpekbcJ6fJnImmW3mFdeUFJ2H9Y3/UuUSW2sBdjrIlCM0gvOkaTEFlofO900TQ=="
-  "resolved" "https://registry.npmjs.org/three/-/three-0.112.1.tgz"
-  "version" "0.112.1"
+"three@0.167":
+  "integrity" "sha512-gYTLJA/UQip6J/tJvl91YYqlZF47+D/kxiWrbTon35ZHlXEN0VOo+Qke2walF1/x92v55H6enomymg4Dak52kw=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.167.1.tgz"
+  "version" "0.167.1"
 
 "throat@^4.0.0":
   "integrity" "sha1-iQN8vJLFarGJJua6TLsgDhVnKmo="

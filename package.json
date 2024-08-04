@@ -1,45 +1,44 @@
 {
-  "homepage" : "https://www.dvicario.es/experiments/web-scraping",
-  "name": "",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "d3": "^5.15.0",
-    "d3-geo": "1.9.0",
-    "moment": "^2.24.0",
-    "react": "^16.12.0",
-    "three": "^0.112.1",
-    "three-orbitcontrols": "^2.110.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^6.9.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-node": "^9.2.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^1.19.1",
-    "react-scripts": "^3.3.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"homepage": "https://www.dvicario.es/experiments/web-scraping",
+	"name": "planetarium",
+	"version": "0.0.0",
+	"private": true,
+	"dependencies": {
+		"d3": "^5.15.0",
+		"d3-geo": "1.9.0",
+		"moment": "^2.24.0",
+		"react": "^16.12.0",
+		"three": "0.167"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-prettier": "^6.9.0",
+		"eslint-config-standard": "^13.0.1",
+		"eslint-plugin-import": "^2.20.0",
+		"eslint-plugin-node": "^9.2.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-standard": "^4.0.1",
+		"prettier": "^1.19.1",
+		"react-scripts": "^3.3.0"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
