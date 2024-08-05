@@ -4,6 +4,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"dependencies": {
+		"canvas-capture": "^2.1.1",
 		"d3": "^5.15.0",
 		"d3-geo": "1.9.0",
 		"moment": "^2.24.0",

@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import * as d3 from "d3";
 
+import { CCapture } from "../../node_modules/canvas-capture";
 import { INITIAL_CAMERA_POSITION } from "./constants";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -30,9 +31,6 @@ export function init(container) {
 		const camRot = cameraRotationsInterpolation(easingFunction);
 		const controlsTarget = controlsTargetScaleInterpolation(easingFunction);
 
-		// console.log(camPos);
-		// console.log(camRot);
-
 		camera.position.x = camPos.x;
 		camera.position.y = camPos.y;
 		camera.position.z = camPos.z;
@@ -50,9 +48,19 @@ export function init(container) {
 
 	let tick = 0;
 	let start = false;
+	let capturing = false;
+
+	// Initialize CCapture.js
+	const capturer = new window.CCapture({
+		format: "jpg",
+		framerate: 24,
+		quality: 45,
+		verbose: true,
+		workersPath: "js/"
+	});
 
 	function play() {
-		requestAnimationFrame(play);
+		// requestAnimationFrame(play);
 		rootMesh.rotation.y += 0.00015;
 
 		if (start) {
@@ -66,11 +74,20 @@ export function init(container) {
 
 		controls.update();
 		renderer.render(scene, camera);
+
+		// Capture frame if recording
+		if (capturing) {
+			capturer.capture(renderer.domElement);
+		}
 	}
+
+	setInterval(() => {
+		play();
+	}, 0);
 
 	function addStarField() {
 		function addStarFieldChild(radius) {
-			var geometry = new THREE.SphereGeometry(radius, 100, 100);
+			var geometry = new THREE.SphereGeometry(radius, 50, 50);
 			var veryBigSphereForStars = new THREE.Mesh(geometry, undefined);
 
 			// Access the position attribute from the buffer geometry
@@ -84,13 +101,9 @@ export function init(container) {
 				let z = positionArray[i + 2];
 
 				// Randomly decide whether to create a star at this vertex
-				if (Math.random() > 0.9) {
+				if (Math.random() > 0.2) {
 					// Create a star geometry and material
-					const geometry = new THREE.SphereGeometry(
-						randomFloat(0.5, 3),
-						12,
-						12
-					);
+					const geometry = new THREE.SphereGeometry(randomFloat(0.5, 3), 8, 8);
 					const material = new THREE.MeshBasicMaterial({
 						color: `rgb(255, 255, 255)`,
 						transparent: true,
@@ -192,11 +205,18 @@ export function init(container) {
 
 	window.onkeydown = (x) => {
 		if (x.code === "Enter") {
-			start = true;
+			if (!capturing) {
+				start = true;
+				capturing = true;
+				capturer.start();
+			} else {
+				start = false;
+				capturing = false;
+				capturer.stop();
+				capturer.save();
+			}
 		}
 		if (x.code === "Space") {
-			// updatePositions(0);
-
 			console.log({
 				x: camera.position.x,
 				y: camera.position.y,
