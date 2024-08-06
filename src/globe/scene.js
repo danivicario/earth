@@ -1,8 +1,8 @@
+// 1280 * 720
 import * as THREE from "three";
 import * as d3 from "d3";
 
 import { CCapture } from "../../node_modules/canvas-capture";
-import { INITIAL_CAMERA_POSITION } from "./constants";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export const scene = new THREE.Scene();
@@ -54,18 +54,14 @@ export function init(container) {
 	const capturer = new window.CCapture({
 		format: "jpg",
 		framerate: 24,
-		quality: 45,
-		verbose: true,
-		workersPath: "js/"
+		quality: 90
 	});
 
-	function play() {
-		// requestAnimationFrame(play);
+	function render() {
 		rootMesh.rotation.y += 0.00015;
 
 		if (start) {
 			tick += 0.001 / 2;
-
 			if (tick > 1) tick = 1;
 			updatePositions(tick);
 		} else {
@@ -75,34 +71,32 @@ export function init(container) {
 		controls.update();
 		renderer.render(scene, camera);
 
-		// Capture frame if recording
+		// Capture the frame after rendering
 		if (capturing) {
 			capturer.capture(renderer.domElement);
 		}
+
+		// requestAnimationFrame(render);
 	}
 
 	setInterval(() => {
-		play();
+		render();
 	}, 0);
 
 	function addStarField() {
 		function addStarFieldChild(radius) {
-			var geometry = new THREE.SphereGeometry(radius, 50, 50);
-			var veryBigSphereForStars = new THREE.Mesh(geometry, undefined);
+			const geometry = new THREE.SphereGeometry(radius, 50, 50);
+			const veryBigSphereForStars = new THREE.Mesh(geometry, undefined);
 
-			// Access the position attribute from the buffer geometry
-			var positionArray = veryBigSphereForStars.geometry.attributes.position.array;
+			const positionArray =
+				veryBigSphereForStars.geometry.attributes.position.array;
 
-			// Traverse and filter vertex positions
 			for (let i = 0; i < positionArray.length; i += 3) {
-				// Get vertex coordinates
 				let x = positionArray[i];
 				let y = positionArray[i + 1];
 				let z = positionArray[i + 2];
 
-				// Randomly decide whether to create a star at this vertex
 				if (Math.random() > 0.2) {
-					// Create a star geometry and material
 					const geometry = new THREE.SphereGeometry(randomFloat(0.5, 3), 8, 8);
 					const material = new THREE.MeshBasicMaterial({
 						color: `rgb(255, 255, 255)`,
@@ -111,14 +105,12 @@ export function init(container) {
 					});
 					const star = new THREE.Mesh(geometry, material);
 
-					// Position the star with random offset
 					star.position.set(
 						x + randomFloat(-100, 100),
 						y + randomFloat(-100, 100),
 						z + randomFloat(-100, 100)
 					);
 
-					// Add the star to the scene
 					scene.add(star);
 				}
 			}
@@ -135,7 +127,6 @@ export function init(container) {
 		scene.add(light);
 	}
 
-	// init scene
 	initResizeListener(container, camera, renderer);
 
 	renderer.setSize(width, height);
@@ -182,11 +173,9 @@ export function init(container) {
 	var cameraRotationsInterpolation = d3.interpolate(initialCameraRot, finalCameraRot);
 	var controlsTargetScaleInterpolation = d3.interpolate(initialControls, finalControls);
 
-	// add rootMesh to scene
 	scene.add(rootMesh);
 
 	addStarField();
-
 	addLights();
 
 	camera.position.x = initialCamera.x;
@@ -201,21 +190,29 @@ export function init(container) {
 	controls.target.y = initialControls.y;
 	controls.target.z = initialControls.z;
 
-	play();
+	render();
 
 	window.onkeydown = (x) => {
+		// start capturing the video with ccapture
 		if (x.code === "Enter") {
 			if (!capturing) {
-				start = true;
+				// start = true;
 				capturing = true;
 				capturer.start();
 			} else {
-				start = false;
+				// start = false;
 				capturing = false;
 				capturer.stop();
 				capturer.save();
 			}
 		}
+
+		// start planet move
+		if (x.code === "ControlLeft") {
+			start = true;
+		}
+
+		// logging out the data
 		if (x.code === "Space") {
 			console.log({
 				x: camera.position.x,
