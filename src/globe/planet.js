@@ -1,5 +1,7 @@
 import * as THREE from "three";
-import { PLANET_RADIUS, PLANET_QUALITY } from "./constants";
+
+import { PLANET_QUALITY, PLANET_RADIUS } from "./constants";
+
 import { rootMesh } from "./scene";
 
 export function init() {

@@ -1,6 +1,8 @@
 import * as THREE from "three";
+
+import { CURVE_MAX_ALTITUDE, CURVE_MIN_ALTITUDE, PLANET_RADIUS } from "./constants";
+
 import { geoInterpolate } from "d3-geo";
-import { PLANET_RADIUS, CURVE_MIN_ALTITUDE, CURVE_MAX_ALTITUDE } from "./constants";
 
 const DEGREE_TO_RADIAN = Math.PI / 180;
 

@@ -3,9 +3,10 @@
 
 import * as THREE from "three";
 import * as d3 from "d3";
+
+import { CURVE_SEGMENTS } from "./constants";
 import Curve from "./Curve";
 import { rootMesh } from "./scene";
-import { CURVE_SEGMENTS } from "./constants";
 
 export default class Path {
 	constructor(allCoords) {

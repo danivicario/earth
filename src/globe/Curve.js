@@ -1,7 +1,9 @@
-import * as THREE from "three";
-import { getSplineFromCoords } from "./utils";
-import { CURVE_SEGMENTS, MESH_DEFAULT_SCALE } from "./constants";
 import * as Materials from "./materials";
+import * as THREE from "three";
+
+import { CURVE_SEGMENTS, MESH_DEFAULT_SCALE } from "./constants";
+
+import { getSplineFromCoords } from "./utils";
 
 export default class Curve {
 	constructor(coords) {

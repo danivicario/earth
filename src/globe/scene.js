@@ -1,8 +1,7 @@
-// 1280 * 720
 import * as THREE from "three";
+// 1280 * 720
 import * as d3 from "d3";
 
-import { CCapture } from "../../node_modules/canvas-capture";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export const scene = new THREE.Scene();
@@ -50,12 +49,12 @@ export function init(container) {
 	let start = false;
 	let capturing = false;
 
-	// Initialize CCapture.js
-	const capturer = new window.CCapture({
-		format: "jpg",
-		framerate: 24,
-		quality: 90
-	});
+	// // Initialize CCapture.js
+	// const capturer = new window.CCapture({
+	// 	format: "jpg",
+	// 	framerate: 24,
+	// 	quality: 90
+	// });
 
 	function render() {
 		rootMesh.rotation.y += 0.00015;
@@ -73,7 +72,7 @@ export function init(container) {
 
 		// Capture the frame after rendering
 		if (capturing) {
-			capturer.capture(renderer.domElement);
+			// capturer.capture(renderer.domElement);
 		}
 
 		// requestAnimationFrame(render);
@@ -194,21 +193,9 @@ export function init(container) {
 
 	window.onkeydown = (x) => {
 		// start capturing the video with ccapture
-		if (x.code === "Enter") {
-			if (!capturing) {
-				// start = true;
-				capturing = true;
-				capturer.start();
-			} else {
-				// start = false;
-				capturing = false;
-				capturer.stop();
-				capturer.save();
-			}
-		}
 
 		// start planet move
-		if (x.code === "ControlLeft") {
+		if (x.code === "Enter") {
 			start = true;
 		}
 

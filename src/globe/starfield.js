@@ -1,4 +1,5 @@
 import * as THREE from "three";
+
 import { randomFloat } from "./utils";
 
 export default class StarField {

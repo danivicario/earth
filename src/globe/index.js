@@ -1,8 +1,8 @@
-import { init as initScene } from "./scene";
-import { init as initSphere } from "./planet";
-import Path from "./paths";
-import { CURVE_SEGMENTS } from "./constants";
 import moment from "moment";
+import { CURVE_SEGMENTS } from "./constants";
+import Path from "./paths";
+import { init as initSphere } from "./planet";
+import { init as initScene } from "./scene";
 
 export default function initGlobe(container) {
 	let filteredData;
